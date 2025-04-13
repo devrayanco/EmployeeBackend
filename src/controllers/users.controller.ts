@@ -23,7 +23,13 @@ export const loginUser = async (req: Request, res: Response) => {
 
   try {
     const token = await admin.auth().createCustomToken(uid);
-    res.json({ token });
+    const userRecord = await admin.auth().getUser(uid);
+
+    res.json({
+      token,
+      uid: userRecord.uid,
+      nome: userRecord.displayName || 'Usuário'
+    });
   } catch (err: any) {
     res.status(400).json({ error: err.message });
   }
