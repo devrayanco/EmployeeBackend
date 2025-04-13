@@ -12,7 +12,7 @@ export const register = async (req: Request, res: Response) => {
       displayName,
     });
 
-    res.status(201).json({ uid: user.uid, email: user.email });
+    res.status(201).json({ uid: user.uid, email: user.email, displayName: user.displayName });
   } catch (err: any) {
     res.status(400).json({ error: err.message });
   }
